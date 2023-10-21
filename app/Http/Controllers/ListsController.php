@@ -72,9 +72,8 @@ class ListsController extends Controller
         $list->name = $request->input('name');
 
         // Calcola il conteggio dei "todo" associati a questa lista
-        $todoCount = $list->todos()->count();
+        $todoCount = $todoCount = $list->todos()->where('done', 0)->count();
 
-        // Assegna il conteggio dei "todo" a undone_count
         $list->undone_count = $todoCount;
 
         $list->save();

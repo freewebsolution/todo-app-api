@@ -74,10 +74,10 @@ class TodosController extends Controller
         $todo->lists_id = $request->has('lists_id') ? $request->input('lists_id') : $todo->lists_id;
         $todo->save();
 
-        // Ora aggiorniamo anche l'undone_count nella lista associata
         $list = Lists::find($todo->lists_id);
         if ($list) {
             $list->undone_count = $list->todos()->where('done', 0)->count();
+            logger($list);
             $list->save();
         }
 

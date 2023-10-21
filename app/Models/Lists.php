@@ -10,6 +10,7 @@ class Lists extends Model
 {
     protected $table = 'lists';
     protected $guarded = ['id'];
+    protected $fillable = ['undone_count'];
 
     public function todos(): HasMany
     {
